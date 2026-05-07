@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Awais | AI/ML Researcher & Physicist</title>
+    <meta name="description" content="Portfolio of Muhammad Awais — Theoretical & Experimental Physicist specializing in AI/ML, Physics-Informed Neural Networks, Deep Learning, and Materials Science.">
+    <meta property="og:title" content="Muhammad Awais | AI/ML Researcher">
+    <meta property="og:description" content="Physics × Artificial Intelligence — PINN specialist and materials science ML researcher based in Padua, Italy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary:   #070c1a;
+            --bg-secondary: #0b1120;
+            --bg-card:      rgba(255,255,255,0.04);
+            --accent:       #00d4ff;
+            --accent-2:     #7c3aed;
+            --accent-green: #00e676;
+            --text-primary: #e8edf5;
+            --text-secondary: #8b949e;
+            --border:       rgba(255,255,255,0.07);
+            --gradient:     linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+        /* ─────────────── NAV ─────────────── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1.1rem 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            background: rgba(7,12,26,0.85);
+            border-bottom: 1px solid var(--border);
+            transition: padding .3s;
+        }
+        .nav-logo {
+            font-size: 1.3rem; font-weight: 900; letter-spacing: -0.5px;
+            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.88rem; font-weight: 500; letter-spacing: .4px;
+            transition: color .25s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta {
+            background: var(--gradient) !important;
+            color: #fff !important;
+            padding: .45rem 1.2rem; border-radius: 8px;
+            -webkit-text-fill-color: #fff !important;
+        }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+        .hamburger span { width:24px; height:2px; background:var(--text-primary); border-radius:2px; transition:all .3s; }
+
+        /* ─────────────── HERO ─────────────── */
+        #hero {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            position: relative; overflow: hidden;
+            padding: 7rem 2.5rem 3rem;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 15% 55%, rgba(0,212,255,.07) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 60% at 85% 20%, rgba(124,58,237,.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 50% 90%, rgba(0,230,118,.04) 0%, transparent 60%);
+        }
+        #particles {
+            position: absolute; inset: 0;
+            pointer-events: none; z-index: 0;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1.1fr .9fr;
+            gap: 5rem; max-width: 1160px; margin: 0 auto; width: 100%;
+            align-items: center; position: relative; z-index: 1;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: .6rem;
+            background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.25);
+            padding: .4rem 1.1rem; border-radius: 50px;
+            font-size: .78rem; font-weight: 600; color: var(--accent);
+            font-family: 'Fira Code', monospace; margin-bottom: 1.6rem;
+        }
+        .hero-badge-dot {
+            width: 7px; height: 7px; background: var(--accent);
+            border-radius: 50%; animation: blink 2s infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+        .hero-name {
+            font-size: clamp(2.6rem,5.5vw,4rem);
+            font-weight: 900; line-height: 1.08; letter-spacing: -2.5px;
+            margin-bottom: .5rem;
+        }
+        .hero-name span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .hero-subtitle {
+            font-family: 'Fira Code', monospace;
+            font-size: clamp(.9rem,1.8vw,1.05rem);
+            color: var(--text-secondary); margin-bottom: 1.6rem;
+            min-height: 1.6em;
+        }
+        .hero-subtitle .typed { color: var(--accent-green); }
+        .cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent-green); margin-left: 2px; animation: blink .8s step-end infinite; vertical-align: middle; }
+
+        .hero-desc {
+            font-size: .98rem; color: var(--text-secondary);
+            line-height: 1.85; max-width: 500px; margin-bottom: 2.6rem;
+        }
+        .hero-desc strong { color: var(--text-primary); font-weight: 600; }
+
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.8rem; }
+        .btn-primary {
+            background: var(--gradient); color: #fff;
+            padding: .85rem 2rem; border-radius: 10px;
+            text-decoration: none; font-weight: 700; font-size: .9rem;
+            display: inline-flex; align-items: center; gap: .5rem;
+            transition: transform .2s, box-shadow .2s;
+            border: none; cursor: pointer;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,212,255,.3); }
+        .btn-secondary {
+            background: transparent; color: var(--text-primary);
+            padding: .85rem 2rem; border-radius: 10px;
+            text-decoration: none; font-weight: 600; font-size: .9rem;
+            border: 1px solid var(--border);
+            display: inline-flex; align-items: center; gap: .5rem;
+            transition: all .2s;
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        .hero-socials { display: flex; gap: .75rem; }
+        .social-btn {
+            width: 40px; height: 40px; border-radius: 10px;
+            border: 1px solid var(--border); background: var(--bg-card);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary); text-decoration: none;
+            font-size: .95rem; transition: all .25s;
+        }
+        .social-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        /* Photo */
+        .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+        .photo-frame {
+            position: relative;
+            width: clamp(260px,30vw,340px);
+            height: clamp(260px,30vw,340px);
+        }
+        .photo-glow {
+            position: absolute; inset: -25px;
+            background: var(--gradient); border-radius: 50%;
+            opacity: .12; filter: blur(35px);
+            animation: glow-pulse 3.5s ease-in-out infinite;
+        }
+        @keyframes glow-pulse { 0%,100%{opacity:.12;transform:scale(1)} 50%{opacity:.22;transform:scale(1.06)} }
+        .photo-border {
+            position: absolute; inset: 0; border-radius: 50%;
+            background: var(--gradient); padding: 3px;
+        }
+        .photo-border-inner { width:100%; height:100%; border-radius:50%; background: var(--bg-primary); }
+        .photo-img {
+            position: absolute; inset: 3px;
+            width: calc(100% - 6px); height: calc(100% - 6px);
+            border-radius: 50%; object-fit: cover; object-position: top center; z-index: 2;
+        }
+        .photo-fallback {
+            position: absolute; inset: 3px;
+            border-radius: 50%; z-index: 2;
+            background: linear-gradient(135deg,#111827,#0b1120);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem;
+        }
+
+        .chip {
+            position: absolute;
+            background: rgba(7,12,26,.92); border: 1px solid var(--border);
+            backdrop-filter: blur(12px); border-radius: 12px;
+            padding: .55rem 1rem;
+            display: flex; align-items: center; gap: .5rem;
+            font-size: .78rem; font-weight: 600; white-space: nowrap;
+            animation: float 3s ease-in-out infinite;
+            z-index: 3;
+        }
+        .chip-1 { top: 8%; right: -14%; color: var(--accent); border-color: rgba(0,212,255,.25); animation-delay:0s; }
+        .chip-2 { bottom: 14%; left: -16%; color: var(--accent-green); border-color: rgba(0,230,118,.25); animation-delay:1.8s; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+
+        /* ─────────────── SECTIONS ─────────────── */
+        section { padding: 6rem 2.5rem; }
+        .container { max-width: 1160px; margin: 0 auto; }
+
+        .tag {
+            font-family: 'Fira Code', monospace;
+            font-size: .8rem; color: var(--accent); font-weight: 500;
+            display: flex; align-items: center; gap: .5rem; margin-bottom: .6rem;
+        }
+        .tag::before { content: '//'; opacity: .45; }
+        .section-heading {
+            font-size: clamp(1.9rem,3.2vw,2.7rem); font-weight: 900;
+            letter-spacing: -1.5px; margin-bottom: .9rem; line-height: 1.1;
+        }
+        .section-heading span { background: var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .section-sub {
+            color: var(--text-secondary); font-size: .97rem;
+            max-width: 600px; line-height: 1.8; margin-bottom: 3rem;
+        }
+
+        /* ─────────────── ABOUT ─────────────── */
+        #about { background: rgba(255,255,255,.012); }
+        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+        .about-text p { color: var(--text-secondary); line-height:1.9; margin-bottom:1.1rem; font-size:.97rem; }
+        .about-text p strong { color: var(--text-primary); }
+
+        .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+        .stat-card {
+            background: var(--bg-card); border:1px solid var(--border);
+            border-radius: 16px; padding: 1.5rem;
+            transition: all .3s;
+        }
+        .stat-card:hover { border-color: rgba(0,212,255,.25); transform:translateY(-4px); }
+        .stat-icon { font-size: 1.6rem; margin-bottom: .6rem; }
+        .stat-val {
+            font-size: 1.6rem; font-weight: 900; line-height:1;
+            background: var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            margin-bottom: .2rem;
+        }
+        .stat-label { font-size:.78rem; color:var(--text-secondary); font-weight:500; }
+
+        /* ─────────────── SKILLS ─────────────── */
+        #skills { background: rgba(255,255,255,.012); }
+        .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1.5rem; }
+        .skill-box {
+            background: var(--bg-card); border:1px solid var(--border);
+            border-radius: 18px; padding: 1.8rem; transition: all .3s;
+        }
+        .skill-box:hover { border-color:rgba(0,212,255,.2); transform:translateY(-4px); }
+        .skill-head { display:flex; align-items:center; gap:.75rem; margin-bottom:1.4rem; }
+        .skill-ico {
+            width:40px; height:40px; border-radius:10px;
+            display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+        }
+        .ico-ai    { background:rgba(0,212,255,.1);  color:var(--accent); }
+        .ico-ml    { background:rgba(251,146,60,.1); color:#fb923c; }
+        .ico-phys  { background:rgba(124,58,237,.1); color:#a78bfa; }
+        .ico-tools { background:rgba(0,230,118,.1);  color:var(--accent-green); }
+        .skill-box-name { font-weight:700; font-size:.95rem; }
+        .tags { display:flex; flex-wrap:wrap; gap:.5rem; }
+        .tag-pill {
+            background:rgba(255,255,255,.04); border:1px solid var(--border);
+            padding:.3rem .8rem; border-radius:50px;
+            font-size:.78rem; color:var(--text-secondary);
+            font-family:'Fira Code',monospace; transition:all .2s; cursor:default;
+        }
+        .tag-pill:hover { border-color:var(--accent); color:var(--accent); background:rgba(0,212,255,.05); }
+
+        /* ─────────────── PROJECTS ─────────────── */
+        .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.4rem; }
+        .pcard {
+            background:var(--bg-card); border:1px solid var(--border);
+            border-radius:20px; padding:1.8rem;
+            display:flex; flex-direction:column;
+            position:relative; overflow:hidden;
+            transition: all .3s ease;
+        }
+        .pcard::after {
+            content:''; position:absolute; top:0; left:0; right:0; height:2px;
+            background:var(--gradient); transform:scaleX(0); transform-origin:left;
+            transition:transform .35s ease;
+        }
+        .pcard:hover { border-color:rgba(0,212,255,.2); transform:translateY(-6px); box-shadow:0 24px 48px rgba(0,0,0,.35); }
+        .pcard:hover::after { transform:scaleX(1); }
+        .pcard-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1rem; }
+        .pcard-icon { font-size:1.9rem; }
+        .pcard-links { display:flex; gap:.4rem; }
+        .pcard-link { color:var(--text-secondary); font-size:.95rem; text-decoration:none; padding:.3rem; transition:color .2s; }
+        .pcard-link:hover { color:var(--accent); }
+        .pcard-name { font-weight:700; font-size:1rem; margin-bottom:.55rem; }
+        .pcard-desc { font-size:.86rem; color:var(--text-secondary); line-height:1.75; flex:1; margin-bottom:1.2rem; }
+        .pcard-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+        .ptag {
+            background:rgba(0,212,255,.06); border:1px solid rgba(0,212,255,.14);
+            color:var(--accent); padding:.22rem .65rem; border-radius:50px;
+            font-size:.73rem; font-family:'Fira Code',monospace;
+        }
+
+        /* ─────────────── CONTACT ─────────────── */
+        #contact { background: rgba(255,255,255,.012); }
+        .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+        .contact-desc { color:var(--text-secondary); line-height:1.8; margin-bottom:2rem; font-size:.97rem; }
+        .contact-links { display:flex; flex-direction:column; gap:.9rem; }
+        .clink {
+            display:flex; align-items:center; gap:1rem;
+            padding:.95rem 1.2rem; background:var(--bg-card);
+            border:1px solid var(--border); border-radius:13px;
+            text-decoration:none; color:var(--text-primary);
+            transition:all .3s;
+        }
+        .clink:hover { border-color:rgba(0,212,255,.3); transform:translateX(6px); }
+        .clink-ico {
+            width:38px; height:38px; border-radius:9px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:.95rem; flex-shrink:0;
+        }
+        .ico-gh  { background:rgba(255,255,255,.07); color:var(--text-primary); }
+        .ico-li  { background:rgba(0,119,181,.15);   color:#0b86c8; }
+        .ico-orc { background:rgba(166,206,57,.12);  color:#a6ce39; }
+        .ico-loc { background:rgba(0,212,255,.1);    color:var(--accent); }
+        .ico-em  { background:rgba(251,146,60,.1);   color:#fb923c; }
+        .clink-lbl  { font-size:.72rem; color:var(--text-secondary); }
+        .clink-val  { font-weight:600; font-size:.88rem; }
+
+        .callout {
+            background:var(--bg-card); border:1px solid var(--border);
+            border-radius:20px; padding:2.5rem; position:relative; overflow:hidden;
+        }
+        .callout::before {
+            content:'"'; font-size:7rem; font-weight:900;
+            color:var(--accent); opacity:.08;
+            position:absolute; top:-1.5rem; left:1.5rem;
+            line-height:1; font-family:Georgia,serif;
+        }
+        .callout-text {
+            font-size:1rem; line-height:1.85; color:var(--text-secondary);
+            margin-bottom:1.5rem; position:relative; z-index:1;
+        }
+        .callout-text em { color:var(--accent); font-style:normal; font-weight:700; }
+        .callout-tags { display:flex; gap:.4rem; flex-wrap:wrap; }
+
+        /* ─────────────── FOOTER ─────────────── */
+        footer {
+            padding:2rem 2.5rem; text-align:center;
+            border-top:1px solid var(--border);
+            color:var(--text-secondary); font-size:.83rem;
+        }
+        footer span { color:var(--accent); }
+
+        /* ─────────────── ANIMATIONS ─────────────── */
+        .fade-up {
+            opacity:0; transform:translateY(28px);
+            transition:opacity .65s ease, transform .65s ease;
+        }
+        .fade-up.in { opacity:1; transform:translateY(0); }
+
+        /* ─────────────── RESPONSIVE ─────────────── */
+        @media(max-width:900px){
+            .hero-grid  { grid-template-columns:1fr; text-align:center; gap:3rem; }
+            .hero-visual { order:-1; }
+            .hero-desc  { margin-inline:auto; }
+            .hero-buttons { justify-content:center; }
+            .hero-socials { justify-content:center; }
+            .chip-1,.chip-2 { display:none; }
+            .about-grid { grid-template-columns:1fr; gap:2.5rem; }
+            .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+            section { padding:4.5rem 1.4rem; }
+        }
+        @media(max-width:600px){
+            nav { padding:.9rem 1.2rem; }
+            .nav-links { display:none; }
+            .nav-links.open {
+                display:flex; flex-direction:column;
+                position:absolute; top:100%; left:0; right:0;
+                background:rgba(7,12,26,.97);
+                padding:1.8rem 1.4rem; gap:1.4rem;
+                border-bottom:1px solid var(--border);
+            }
+            .hamburger { display:flex; }
+            .projects-grid { grid-template-columns:1fr; }
+            .stats-grid { grid-template-columns:1fr 1fr; }
+            .photo-frame { width:220px; height:220px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="nav">
+    <div class="nav-logo">MA</div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="ham" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+    <div class="hero-bg"></div>
+    <canvas id="particles"></canvas>
+
+    <div class="hero-grid container">
+        <!-- Content -->
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Open to Research &amp; Industry Roles
+            </div>
+            <h1 class="hero-name">Muhammad<br><span>Awais</span></h1>
+            <p class="hero-subtitle">
+                <span class="typed" id="typed"></span><span class="cursor"></span>
+            </p>
+            <p class="hero-desc">
+                <strong>Theoretical &amp; Experimental Physicist</strong> bridging classical physics and modern AI.
+                Specializing in <strong>Physics-Informed Neural Networks</strong>, Bayesian deep learning,
+                and <strong>AI-driven materials discovery</strong>.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary"><i class="fas fa-rocket"></i>&nbsp;View Projects</a>
+                <a href="https://github.com/cmsawais" target="_blank" class="btn-secondary"><i class="fab fa-github"></i>&nbsp;GitHub</a>
+            </div>
+            <div class="hero-socials">
+                <a href="https://github.com/cmsawais" target="_blank" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/muhammad-awais-19581525a/" target="_blank" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://orcid.org/0009-0001-3665-9507" target="_blank" class="social-btn" title="ORCID"><i class="fab fa-orcid"></i></a>
+            </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="hero-visual">
+            <div class="photo-frame">
+                <div class="photo-glow"></div>
+                <div class="photo-border"><div class="photo-border-inner"></div></div>
+                <img
+                    src="assets/profile.png"
+                    alt="Muhammad Awais"
+                    class="photo-img"
+                    id="profileImg"
+                    onerror="this.style.display='none';document.getElementById('photoFallback').style.display='flex';"
+                >
+                <div class="photo-fallback" id="photoFallback" style="display:none;">🧑‍🔬</div>
+            </div>
+            <div class="chip chip-1"><span>🧠</span> Physics-Informed AI</div>
+            <div class="chip chip-2"><span>⚛️</span> Materials Science</div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+    <div class="container">
+        <div class="tag">about me</div>
+        <h2 class="section-heading">Physics Meets<br><span>Artificial Intelligence</span></h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm a <strong>Theoretical and Experimental Physicist</strong> based in <strong>Padua, Italy</strong>,
+                    affiliated with the University of Padova (UNIPD). My research lives at the intersection of
+                    quantum mechanics, computational physics, and cutting-edge machine learning.
+                </p>
+                <p>
+                    My core focus is <strong>Physics-Informed Neural Networks (PINNs)</strong> — embedding conservation
+                    laws, physical constraints, and domain knowledge directly into neural architectures.
+                    This makes models not just accurate, but physically consistent and interpretable.
+                </p>
+                <p>
+                    Current projects span <strong>Li-ion battery modeling</strong>, <strong>perovskite solar cell optimization</strong>,
+                    SEM image classification with Spiking Neural Networks, and DFT-based materials property prediction.
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card fade-up">
+                    <div class="stat-icon">🔬</div>
+                    <div class="stat-val">10+</div>
+                    <div class="stat-label">Research Projects</div>
+                </div>
+                <div class="stat-card fade-up">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-val">PINN</div>
+                    <div class="stat-label">Core Specialization</div>
+                </div>
+                <div class="stat-card fade-up">
+                    <div class="stat-icon">🏛️</div>
+                    <div class="stat-val">UNIPD</div>
+                    <div class="stat-label">University of Padova</div>
+                </div>
+                <div class="stat-card fade-up">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-val">Italy</div>
+                    <div class="stat-label">Padua, Europe</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── SKILLS ─── -->
+<section id="skills">
+    <div class="container">
+        <div class="tag">technical expertise</div>
+        <h2 class="section-heading">Skills &amp;<br><span>Technologies</span></h2>
+        <p class="section-sub">A toolkit built across physics, machine learning, scientific computing, and data analysis.</p>
+
+        <div class="skills-grid">
+            <div class="skill-box fade-up">
+                <div class="skill-head">
+                    <div class="skill-ico ico-ai"><i class="fas fa-brain"></i></div>
+                    <span class="skill-box-name">AI &amp; Deep Learning</span>
+                </div>
+                <div class="tags">
+                    <span class="tag-pill">Physics-Informed NNs</span>
+                    <span class="tag-pill">Deep Learning</span>
+                    <span class="tag-pill">CNNs</span>
+                    <span class="tag-pill">Spiking NNs (SNN)</span>
+                    <span class="tag-pill">Bayesian Deep Learning</span>
+                    <span class="tag-pill">Self-Supervised Learning</span>
+                    <span class="tag-pill">Transfer Learning</span>
+                </div>
+            </div>
+
+            <div class="skill-box fade-up">
+                <div class="skill-head">
+                    <div class="skill-ico ico-ml"><i class="fas fa-chart-line"></i></div>
+                    <span class="skill-box-name">Machine Learning</span>
+                </div>
+                <div class="tags">
+                    <span class="tag-pill">PyTorch</span>
+                    <span class="tag-pill">TensorFlow</span>
+                    <span class="tag-pill">scikit-learn</span>
+                    <span class="tag-pill">Random Forest</span>
+                    <span class="tag-pill">XGBoost</span>
+                    <span class="tag-pill">Bayesian Inference</span>
+                    <span class="tag-pill">Regression / Classification</span>
+                </div>
+            </div>
+
+            <div class="skill-box fade-up">
+                <div class="skill-head">
+                    <div class="skill-ico ico-phys"><i class="fas fa-atom"></i></div>
+                    <span class="skill-box-name">Physics &amp; Simulation</span>
+                </div>
+                <div class="tags">
+                    <span class="tag-pill">DFT (VASP / VASPKIT)</span>
+                    <span class="tag-pill">Quantum Mechanics</span>
+                    <span class="tag-pill">Band Structure</span>
+                    <span class="tag-pill">SPM Battery Models</span>
+                    <span class="tag-pill">SCAPS-1D</span>
+                    <span class="tag-pill">Perovskite Materials</span>
+                    <span class="tag-pill">Materials Discovery</span>
+                </div>
+            </div>
+
+            <div class="skill-box fade-up">
+                <div class="skill-head">
+                    <div class="skill-ico ico-tools"><i class="fas fa-code"></i></div>
+                    <span class="skill-box-name">Languages &amp; Tools</span>
+                </div>
+                <div class="tags">
+                    <span class="tag-pill">Python</span>
+                    <span class="tag-pill">Jupyter Notebook</span>
+                    <span class="tag-pill">NumPy / Pandas</span>
+                    <span class="tag-pill">Matplotlib / Seaborn</span>
+                    <span class="tag-pill">Git &amp; GitHub</span>
+                    <span class="tag-pill">LaTeX</span>
+                    <span class="tag-pill">Scientific Computing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PROJECTS ─── -->
+<section id="projects">
+    <div class="container">
+        <div class="tag">work</div>
+        <h2 class="section-heading">Research &amp;<br><span>Projects</span></h2>
+        <p class="section-sub">Selected projects at the intersection of AI and physics — from battery models to materials discovery.</p>
+
+        <div class="projects-grid">
+
+            <div class="pcard fade-up">
+                <div class="pcard-top">
+                    <span class="pcard-icon">⚡</span>
+                    <div class="pcard-links">
+                        <a href="https://github.com/cmsawais/Bayesian-PINN" target="_blank" class="pcard-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="pcard-name">Bayesian PINN — Li-ion Battery SPM</h3>
+                <p class="pcard-desc">Bayesian Physics-Informed Neural Network for the Single Particle Model of Li-ion batteries. Fuses uncertainty quantification with physics-constrained learning for robust battery state estimation.</p>
+                <div class="pcard-tags">
+                    <span class="ptag">PINNs</span>
+                    <span class="ptag">Bayesian DL</span>
+                    <span class="ptag">Python</span>
+                    <span class="ptag">Battery</span>
+                </div>
+            </div>
+
+            <div class="pcard fade-up">
+                <div class="pcard-top">
+                    <span class="pcard-icon">☀️</span>
+                    <div class="pcard-links">
+                        <a href="https://github.com/cmsawais/PIML-InSnCl3" target="_blank" class="pcard-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="pcard-name">PIML — InSnCl3 Perovskite Solar Cells</h3>
+                <p class="pcard-desc">Physics-informed ML workflow for SCAPS-1D modeling of InSnCl3 perovskite solar cells. Uses ML surrogates to accelerate device simulation and parameter optimization.</p>
+                <div class="pcard-tags">
+                    <span class="ptag">PIML</span>
+                    <span class="ptag">Perovskites</span>
+                    <span class="ptag">Jupyter</span>
+                    <span class="ptag">Solar Energy</span>
+                </div>
+            </div>
+
+            <div class="pcard fade-up">
+                <div class="pcard-top">
+                    <span class="pcard-icon">🔬</span>
+                    <div class="pcard-links">
+                        <a href="https://github.com/cmsawais/fractospike-sem" target="_blank" class="pcard-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="pcard-name">FractoSpike-SEM Image Classification</h3>
+                <p class="pcard-desc">Leakage-safe SEM image classification toolkit combining CNNs, Spiking Neural Networks, and self-supervised learning. Addresses privacy-preserving ML in materials characterization workflows.</p>
+                <div class="pcard-tags">
+                    <span class="ptag">CNNs</span>
+                    <span class="ptag">SNN</span>
+                    <span class="ptag">Self-Supervised</span>
+                    <span class="ptag">Python</span>
+                </div>
+            </div>
+
+            <div class="pcard fade-up">
+                <div class="pcard-top">
+                    <span class="pcard-icon">⚛️</span>
+                    <div class="pcard-links">
+                        <a href="https://github.com/cmsawais/effective-mass-calculator-from-bandstructure" target="_blank" class="pcard-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="pcard-name">Effective Mass Calculator</h3>
+                <p class="pcard-desc">Calculates electron &amp; hole effective masses from VASP/VASPKIT BAND.dat files using parabolic band-edge fitting. An essential tool for semiconductor and materials property analysis.</p>
+                <div class="pcard-tags">
+                    <span class="ptag">DFT</span>
+                    <span class="ptag">VASP</span>
+                    <span class="ptag">Jupyter</span>
+                    <span class="ptag">Materials</span>
+                </div>
+            </div>
+
+            <div class="pcard fade-up">
+                <div class="pcard-top">
+                    <span class="pcard-icon">🧬</span>
+                    <div class="pcard-links">
+                        <a href="https://github.com/cmsawais/SNN" target="_blank" class="pcard-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="pcard-name">Spiking Neural Network (SNN)</h3>
+                <p class="pcard-desc">Updated implementation of Spiking Neural Networks for neuromorphic computing. Explores biologically-inspired computational models for energy-efficient and brain-like AI systems.</p>
+                <div class="pcard-tags">
+                    <span class="ptag">SNN</span>
+                    <span class="ptag">Neuromorphic</span>
+                    <span class="ptag">Jupyter</span>
+                    <span class="ptag">Deep Learning</span>
+                </div>
+            </div>
+
+            <div class="pcard fade-up">
+                <div class="pcard-top">
+                    <span class="pcard-icon">🌍</span>
+                    <div class="pcard-links">
+                        <a href="https://github.com/cmsawais/ML-exploration-ABO3-perovskites" target="_blank" class="pcard-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="pcard-name">ML Exploration — ABO3 Perovskites</h3>
+                <p class="pcard-desc">Machine learning exploration for ABO3 perovskite oxides — predicting electronic properties and guiding materials discovery using data-driven approaches on DFT-derived datasets.</p>
+                <div class="pcard-tags">
+                    <span class="ptag">ML</span>
+                    <span class="ptag">Perovskites</span>
+                    <span class="ptag">Materials Discovery</span>
+                    <span class="ptag">DFT</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:2.5rem;">
+            <a href="https://github.com/cmsawais?tab=repositories" target="_blank" class="btn-secondary" style="display:inline-flex;">
+                <i class="fab fa-github"></i>&nbsp; View All Repositories
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+    <div class="container">
+        <div class="tag">get in touch</div>
+        <h2 class="section-heading">Let's Work<br><span>Together</span></h2>
+        <div class="contact-grid">
+            <div>
+                <p class="contact-desc">
+                    I'm actively seeking <strong style="color:var(--text-primary)">research positions, industry roles,
+                    and collaborations</strong> in AI/ML, Physics-Informed Machine Learning, and scientific computing.
+                    Whether you're a research lab, a startup, or a tech company — I'd love to connect.
+                </p>
+                <div class="contact-links">
+                    <a href="https://github.com/cmsawais" target="_blank" class="clink">
+                        <div class="clink-ico ico-gh"><i class="fab fa-github"></i></div>
+                        <div><div class="clink-lbl">GitHub</div><div class="clink-val">github.com/cmsawais</div></div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/muhammad-awais-19581525a/" target="_blank" class="clink">
+                        <div class="clink-ico ico-li"><i class="fab fa-linkedin-in"></i></div>
+                        <div><div class="clink-lbl">LinkedIn</div><div class="clink-val">muhammad-awais-19581525a</div></div>
+                    </a>
+                    <a href="https://orcid.org/0009-0001-3665-9507" target="_blank" class="clink">
+                        <div class="clink-ico ico-orc"><i class="fab fa-orcid"></i></div>
+                        <div><div class="clink-lbl">ORCID</div><div class="clink-val">0009-0001-3665-9507</div></div>
+                    </a>
+                    <div class="clink">
+                        <div class="clink-ico ico-loc"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><div class="clink-lbl">Location</div><div class="clink-val">Padua, Italy 🇮🇹</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout fade-up">
+                <p class="callout-text">
+                    "The goal is to use <em>physics as a prior</em> — embedding conservation laws, symmetries, and domain knowledge
+                    directly into neural networks, making AI not just powerful, but <em>physically consistent</em>
+                    and interpretable. That is the promise of <em>Scientific Machine Learning</em>."
+                </p>
+                <div class="callout-tags">
+                    <span class="ptag">PINNs</span>
+                    <span class="ptag">Scientific ML</span>
+                    <span class="ptag">AI for Physics</span>
+                    <span class="ptag">Physics × AI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <p>Designed &amp; built by <span>Muhammad Awais</span> · Padua, Italy · <span>2026</span></p>
+    <p style="margin-top:.4rem;font-size:.75rem;opacity:.45;">Open to research collaborations &amp; industry positions in AI / ML / Scientific Computing</p>
+</footer>
+
+<script>
+/* ── Particles ── */
+(function(){
+    const c = document.getElementById('particles');
+    const ctx = c.getContext('2d');
+    let W, H, pts = [];
+
+    function init(){
+        W = c.width  = window.innerWidth;
+        H = c.height = window.innerHeight;
+        pts = Array.from({length:55},()=>({
+            x: Math.random()*W, y: Math.random()*H,
+            r: Math.random()*.8+.4,
+            vx:(Math.random()-.5)*.25,
+            vy:(Math.random()-.5)*.25,
+            a: Math.random()*.3+.08
+        }));
+    }
+    init();
+    window.addEventListener('resize', init);
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        pts.forEach(p=>{
+            p.x=(p.x+p.vx+W)%W; p.y=(p.y+p.vy+H)%H;
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+            ctx.fillStyle=`rgba(0,212,255,${p.a})`;
+            ctx.fill();
+        });
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+/* ── Scroll fade ── */
+const obs = new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{
+        if(e.isIntersecting)
+            setTimeout(()=>e.target.classList.add('in'), i*80);
+    });
+},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+/* ── Nav shrink ── */
+window.addEventListener('scroll',()=>{
+    document.getElementById('nav').style.padding =
+        window.scrollY>50 ? '.6rem 2.5rem' : '1.1rem 2.5rem';
+});
+
+/* ── Mobile nav ── */
+function toggleNav(){
+    document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a=>
+    a.addEventListener('click',()=>
+        document.getElementById('navLinks').classList.remove('open')));
+
+/* ── Typewriter ── */
+(function(){
+    const titles = [
+        'AI/ML Researcher',
+        'PINN Specialist',
+        'Materials Scientist',
+        'Scientific Computing',
+        'Physics × Deep Learning'
+    ];
+    let ti=0, ci=0, del=false;
+    const el = document.getElementById('typed');
+
+    function tick(){
+        const t = titles[ti];
+        if(del){
+            el.textContent = t.slice(0,--ci);
+            if(ci===0){ del=false; ti=(ti+1)%titles.length; return setTimeout(tick,420); }
+        } else {
+            el.textContent = t.slice(0,++ci);
+            if(ci===t.length){ del=true; return setTimeout(tick,2400); }
+        }
+        setTimeout(tick, del?55:95);
+    }
+    tick();
+})();
+</script>
+</body>
+</html>
